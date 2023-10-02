@@ -1,6 +1,7 @@
 import GradeProdutos from './componentes/GradeProdutos';
 import BarraBusca from './templates/BarraBusca';
 import Cabecalho from './templates/Cabecalho';
+import CarrinhoConteudo from './componentes/VerCarrinho';
 import React, { useEffect, useState } from 'react';
 
 function App() {
@@ -14,17 +15,7 @@ function App() {
 
   const [produtos, setProdutos] = useState([]);
   const [carrinho, setCarrinho] = useState([]);
-
-  useEffect(() => {
-    const carrinhoSalvo = JSON.parse(localStorage.getItem('carrinho'));
-    if (carrinhoSalvo) {
-      setCarrinho(carrinhoSalvo);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-  }, [carrinho]);
+  const [mostrarCarrinho, setMostrarCarrinho] = useState(false);
 
   const adicionarProdutoAoCarrinho = (produto) => {
     const index = carrinho.findIndex((item) => item.id === produto.id);
@@ -38,10 +29,22 @@ function App() {
     }
   };
 
+  const toggleMostrarCarrinho = () => {
+    setMostrarCarrinho(!mostrarCarrinho);
+  };
+
   return (
     <div className="App">
       <Cabecalho />
       <BarraBusca />
+      <button onClick={toggleMostrarCarrinho}>Mostrar Carrinho</button>
+      {mostrarCarrinho && (
+        <CarrinhoConteudo
+          carrinho={carrinho}
+          setCarrinho={setCarrinho}
+          toggleMostrarCarrinho={toggleMostrarCarrinho}
+        />
+      )}
       <GradeProdutos listaProdutos={produtos} adicionarProdutoAoCarrinho={adicionarProdutoAoCarrinho} />
     </div>
   );
