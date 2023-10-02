@@ -1,2 +1,2 @@
-# RicardoEletroLP21B
+# BCCLP2Prova1B
 Prova de LP2
