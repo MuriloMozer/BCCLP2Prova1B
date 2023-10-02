@@ -1,6 +1,8 @@
 import { useState } from "react";
 export default function Produto(props){
     const [quantidade, setQuantidade] = useState(1);
+    //const [comprado, setComprado] = useState(false);
+    //const [listaProdutos, setListaProdutos] = useState(0);
     return(
         <div style={{
             width: '200px',

@@ -1,5 +1,9 @@
+import { useState } from "react";
+
 export default function Carrinho(props) {
-    
+    //const [item,setItem]= useState(null);
+    //const [modoCompra, setModoCompra] = useState(false);
+    //function
     return (
         <div style={{
             display: 'flex',
